@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { AddItemPage } from '../pages/add-item-page/add-item-page';
-import { ItemDetailPage } from '../pages/item-detail-page/item-detail-page';
-import { Storage } from '@ionic/storage';
+import { AddItemPage } from '../pages/add-item/add-item';
+import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { Data } from '../providers/data';
 
 @NgModule({
@@ -15,7 +15,8 @@ import { Data } from '../providers/data';
     ItemDetailPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -24,6 +25,6 @@ import { Data } from '../providers/data';
     AddItemPage,
     ItemDetailPage
   ],
-  providers: [Storage, Data]
+  providers: [Data, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

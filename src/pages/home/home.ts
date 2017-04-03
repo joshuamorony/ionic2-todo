@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
-import { AddItemPage } from '../add-item-page/add-item-page'
-import { ItemDetailPage } from '../item-detail-page/item-detail-page';
+import { AddItemPage } from '../add-item/add-item'
+import { ItemDetailPage } from '../item-detail/item-detail';
 import { Data } from '../../providers/data';
 
 @Component({
@@ -14,13 +14,13 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public dataService: Data) {
 
-  	this.dataService.getData().then((todos) => {
+    this.dataService.getData().then((todos) => {
 
-  		if(todos){
-	  		this.items = JSON.parse(todos);	
-  		}
+      if(todos){
+        this.items = JSON.parse(todos); 
+      }
 
-  	});
+    });
 
   }
 
@@ -30,22 +30,23 @@ export class HomePage {
 
   addItem(){
 
-  	let addModal = this.modalCtrl.create(AddItemPage);
-  	
-  	addModal.onDidDismiss((item) => {
+    let addModal = this.modalCtrl.create(AddItemPage);
+    
+    addModal.onDidDismiss((item) => {
 
           if(item){
-      	    this.saveItem(item);
+            this.saveItem(item);
           }
 
-  	});
+    });
 
-  	addModal.present();
+    addModal.present();
 
   }
 
   saveItem(item){
-  	this.items.push(item);
+    this.items.push(item);
+    this.dataService.save(this.items);
   }
 
   viewItem(item){
