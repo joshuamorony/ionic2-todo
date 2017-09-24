@@ -13,8 +13,7 @@ export class Data {
   }
 
   save(data){
-    let newData = JSON.stringify(data);
-    this.storage.set('todos', newData);
+    this.storage.set('todos', data);
   }
   
 }

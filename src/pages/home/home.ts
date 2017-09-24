@@ -17,7 +17,7 @@ export class HomePage {
     this.dataService.getData().then((todos) => {
 
       if(todos){
-        this.items = JSON.parse(todos); 
+        this.items = todos;
       }
 
     });

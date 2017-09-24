@@ -3,12 +3,11 @@ import { Platform } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
 
-
 @Component({
-  template: `<ion-nav [root]="rootPage"></ion-nav>`
+  templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = HomePage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
